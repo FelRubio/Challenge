@@ -25,4 +25,14 @@ public struct InstallmentsData {
         self.amount = amount
         self.currencyId = currencyId
     }
+    
+    /// Generates a sample `InstallmentsData` instance with random data.
+    /// - Returns: An `InstallmentsData` instance with random data.
+    public static func random() -> InstallmentsData {
+        return InstallmentsData(
+            quantity: Int.random(in: 1...24),
+            amount: Double.random(in: 10...1000),
+            currencyId: ["USD", "EUR", "GBP"].randomElement()!
+        )
+    }
 }

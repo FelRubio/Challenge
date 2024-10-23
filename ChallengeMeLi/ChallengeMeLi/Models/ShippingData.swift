@@ -21,4 +21,13 @@ public struct ShippingData {
         self.storePickUp = storePickUp
         self.freeShipping = freeShipping
     }
+    
+    /// Generates a sample `ShippingData` instance with random data.
+    /// - Returns: A `ShippingData` instance with random data.
+    public static func random() -> ShippingData {
+        return ShippingData(
+            storePickUp: Bool.random(),
+            freeShipping: Bool.random()
+        )
+    }
 }
