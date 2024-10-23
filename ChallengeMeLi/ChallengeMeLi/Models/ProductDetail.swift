@@ -30,4 +30,16 @@ public struct ProductDetail: Identifiable {
         self.pictures = pictures
         self.description = description
     }
+    
+    public static func random() -> ProductDetail {
+        return ProductDetail(
+            id: UUID().uuidString,
+            name: "Sample Product \(Int.random(in: 1...1000))",
+            attributes: [],
+            pictures: Array(repeating: URL(string: "https://picsum.photos/200")!, count: Int.random(in: 3...5)),
+            description: """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in turpis et enim tempus hendrerit. Vestibulum tincidunt ultricies odio, sed feugiat lorem scelerisque vitae. Vivamus at augue lectus. Duis quis tempus dui. Nullam id tincidunt justo, eu tempor leo. Donec nisl metus, interdum at efficitur ut, cursus in nisi. Ut ut mauris risus. Donec malesuada augue a gravida lobortis. Sed at est tempor, tincidunt nisl et, maximus quam. Duis tempor tempor bibendum. Sed ut arcu in libero ultrices euismod.
+"""
+        )
+    }
 }
