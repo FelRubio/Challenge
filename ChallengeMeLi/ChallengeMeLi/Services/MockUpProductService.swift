@@ -6,7 +6,7 @@
 //
 
 public struct MockUpProductService: ProductServiceProtocol {
-    public func getProducts(completion: @escaping (Result<[Product], any Error>) -> Void) {
+    public func fetchProducts(completion: @escaping (Result<[Product], ProductServiceError>) -> Void) {
         let mockProducts = (1...20).map { _ in Product.random() }
         
         completion(.success(mockProducts))

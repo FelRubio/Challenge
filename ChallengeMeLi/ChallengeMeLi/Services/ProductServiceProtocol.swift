@@ -6,5 +6,5 @@
 //
 
 public protocol ProductServiceProtocol {
-    func getProducts(completion: @escaping (Result<[Product], Error>) -> Void)
+    func fetchProducts(completion: @escaping (Result<[Product], ProductServiceError>) -> Void)
 }
