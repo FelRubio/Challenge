@@ -33,7 +33,7 @@ public class ProductViewModel {
     
     func searchProducts(with query: String, completion: @escaping () -> Void) {
         if query.isEmpty {
-            products = []
+            fetchInitialProducts(completion: completion)
         } else {
             productService.fetchProducts(with: query) { result in
                 switch result {
