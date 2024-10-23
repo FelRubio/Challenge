@@ -7,6 +7,8 @@
 
 
 public enum ProductServiceError: Error {
+    case decodingError(Error)
+    case invalidURL
     case invalidResponse
     case networkError(Error)
 }
