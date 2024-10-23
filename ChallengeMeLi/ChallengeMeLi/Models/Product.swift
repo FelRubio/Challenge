@@ -5,6 +5,7 @@
 //  Created by Felipe Rubio on 23/10/24.
 //
 
+import Foundation
 
 /// Represents a product with its details.
 public struct Product: Identifiable {
@@ -63,5 +64,22 @@ public struct Product: Identifiable {
         self.quantityAvailable = quantityAvailable
         self.shippingData = shippingData
         self.installmentsData = installmentsData
+    }
+    
+    /// Generates a sample `Product` instance with random data.
+    /// - Returns: A `Product` instance with random data.
+    public static func random() -> Product {
+        return Product(
+            id: UUID().uuidString,
+            title: "Sample Product \(Int.random(in: 1...1000))",
+            thumbnailURL: "https://picsum.photos/200",
+            price: Int.random(in: 1...1000) * 100,
+            originalPrice: Bool.random() ? Int.random(in: 1...1000) * 100 : nil,
+            currencyId: ["USD", "EUR", "GBP", "COP"].randomElement()!,
+            condition: ["New", "Used", "Refurbished"].randomElement()!,
+            quantityAvailable: Int.random(in: 1...100),
+            shippingData: ShippingData.random(),
+            installmentsData: InstallmentsData.random()
+        )
     }
 }
