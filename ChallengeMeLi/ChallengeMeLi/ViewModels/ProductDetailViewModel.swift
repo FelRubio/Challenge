@@ -12,7 +12,7 @@ class ProductDetailViewModel {
     private let productService: ProductServiceProtocol
     var productDetail: ProductDetail?
     
-    init(productService: ProductServiceProtocol = MockUpProductService()) {
+    init(productService: ProductServiceProtocol = ProductService()) {
         self.productService = productService
     }
     
