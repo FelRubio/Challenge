@@ -13,6 +13,7 @@ class ProductListViewController: UIViewController, UITableViewDataSource, UITabl
     private let searchBar = UISearchBar()
     private var viewModel = ProductViewModel()
     private var isLoadingMore = false
+    private var debounceTimer: Timer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,11 +55,21 @@ class ProductListViewController: UIViewController, UITableViewDataSource, UITabl
         return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let product = viewModel.products[indexPath.row]
+        let detailVC = ProductDetailViewController(product: product)
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+
     // UISearchBar Delegate
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel.searchProducts(with: searchText) {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        debounceTimer?.invalidate()
+        
+        debounceTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
+            self?.viewModel.searchProducts(with: searchText) {
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
             }
         }
     }
